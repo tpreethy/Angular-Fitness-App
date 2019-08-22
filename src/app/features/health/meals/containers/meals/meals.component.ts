@@ -10,14 +10,18 @@ import { Store } from 'store';
 })
 export class MealsComponent implements OnInit {
   meals$:Observable<Meal[]>;
-  subscription:Subscription
+  subscription:Subscription;
 
   constructor(private mealsService:MealsService,
     private store:Store) { }
 
   ngOnInit() {
-    this.meals$ = this.store.select<Meal[]>('meals')
+    this.meals$ = this.store.select<Meal[]>('meals');
     this.subscription = this.mealsService.meals$.subscribe();
+  }
+
+  removeMeal(event:Meal){
+    this.mealsService.removeMeal(event.$key);
   }
   
 

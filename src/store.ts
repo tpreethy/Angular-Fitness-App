@@ -25,6 +25,7 @@ export class Store {
   }
 
   select<T>(name: string): Observable<T> {
+    console.log(name);
     return this.store.pipe(pluck(name));
   }
 
